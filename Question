@@ -1,0 +1,68 @@
+Two strings are said to be special anagrams, if their special power value is same. The special power
+of a string is calculated to be the summation of 2 raised to the powers of the lexicographical index
+of each unique character in the string. The lexicographical index of ‘a’ is 0, of ‘b’ is 1, and so
+on. For example, for the string ‘abcac’, special power value = 20 + 21 + 22 = 7. Hence, it will be
+considered as a special anagram of the string ‘cab’ whose special power value is 7 as well.
+Write a program to classify the given input string into groups of special anagrams using a Hash
+Table with separate chaining. The size of hash table is 255. For P anagrams having the same
+special power value, print the P strings in one line separated from each other by a space in
+lexicographical order.
+
+Note: The special power values of anagrams are considered as the index number in the hash table.
+Hash table is implemented as an array in which each entry contains a head pointer to a linked
+list which contains the anagrams with same special power value. The anagrams generating same
+special power value belong to the same linked list (refer sample output for explanation). Each node
+of the linked list is of the following type.
+
+struct node{
+char *string; // string to be store
+struct node * next; //pointer to the next node
+};
+
+
+Input Format:
+• The first line of the input contains an integer n ∈ [1, 100], the number of strings in the input.
+• The next n lines contain the input strings to be classified.
+• Each input string S contains alphabets from {a, b, c, d, e, f, g, h}. 1 ≤ |S| ≤ 50 where |S|
+denotes the length of any input string.
+
+
+
+Output Format:
+• The output contains k lines in which anagrams with lower special power value should be
+printed first.
+• In each of the k lines, print the words which belong to the same special anagram group in
+their lexicographical order. Each word in a line should be separated by a space.
+
+
+Sample Input 1:
+6
+eah
+hea
+hac
+ahe
+cah
+bah
+
+
+Sample Output 1:
+bah
+cah hac
+ahe eah hea
+
+
+
+Sample Input 2:
+6
+heaaa
+hacca
+hbaba
+ahb
+cah
+eah
+
+
+Sample Output 2:
+ahb hbaba
+cah hacca
+eah heaaa
